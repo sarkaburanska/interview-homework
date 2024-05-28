@@ -3,8 +3,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var productRouter = require('./routes/product');
+var shipmentRouter = require('./routes/shipment');
 
 var app = express();
 
@@ -14,7 +14,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/product', productRouter);
+app.use('/api/shipment', shipmentRouter);
+
+app.use(function (err, req, res) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 module.exports = app;
