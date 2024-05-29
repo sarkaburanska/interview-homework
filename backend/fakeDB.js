@@ -9,6 +9,7 @@ const STATUS = {
   SHIPPED: 'SHIPPED',
 }
 const product1 = {
+  id: 1,
   name: 'apple1', // unique identifier
   label: 'Apple',
   quantity: 10,
@@ -16,6 +17,7 @@ const product1 = {
   unit: UNITS.KG
 };
 const product2 = {
+  id: 2,
   name: 'apple_juice1',
   label: 'Apple juice',
   quantity: 80,
@@ -24,6 +26,7 @@ const product2 = {
 };
 
 const product3 = {
+  id: 3,
   name: 'orange1',
   label: 'Orange',
   quantity: 5,
@@ -34,8 +37,9 @@ const product3 = {
 const products = [product1, product2, product3];
 
 const newShipment = {
-  company_name: 'DHL',
-  shipment_date: '2024-06-26T10:46:35.437Z',
+  id: 1,
+  companyName: 'DHL',
+  shipmentDate: '2024-06-26T10:46:35.437Z',
   items: [{
     name: 'apple1',
     label: 'Apple',

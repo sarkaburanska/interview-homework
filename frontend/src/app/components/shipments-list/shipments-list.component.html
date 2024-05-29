@@ -1,0 +1,15 @@
+<div class="shipments-list">
+  <div class="list-header">
+    <h2>Shipments</h2>
+    <button mat-flat-button color="primary" [routerLink]="['/products',{form:true}]">
+      <mat-icon>add</mat-icon>
+      Create shipment
+    </button>
+  </div>
+  <app-shipment-item *ngFor="let item of shipments"
+                     [item]="item"
+                     (updateShipment)="updateShipment(item.id!)"
+                     (deleteShipment)="deleteShipment(item.id!)">
+  </app-shipment-item>
+  <app-info-bar *ngIf="!shipments?.length" text="Sorry, no shipments found" color="#d5aef5"></app-info-bar>
+</div>

@@ -1,0 +1,18 @@
+:host {
+  width: 100%;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+
+    > *:first-child {
+      flex: 6;
+    }
+
+    > *:last-child {
+      flex: 4;
+    }
+  }
+}

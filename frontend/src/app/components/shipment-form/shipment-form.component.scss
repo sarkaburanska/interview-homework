@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+
+  .product-item {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product-item-input {
+    flex: 0.5;
+  }
+  .product-item-label {
+    flex: 0.5;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="product-list">
+  <h2>Available products</h2>
+  <app-product-item *ngFor="let item of products"
+                    [item]="item"
+                    (addToShipment)="addItemToShipment(item.id)">
+  </app-product-item>
+  <app-info-bar *ngIf="!products?.length" text="Sorry, no products found" color="#93ecfa"></app-info-bar>
+</div>

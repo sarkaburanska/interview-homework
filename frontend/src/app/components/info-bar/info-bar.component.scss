@@ -1,0 +1,11 @@
+:host {
+  width: 100%;
+
+  .empty-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    color: black;
+  }
+}

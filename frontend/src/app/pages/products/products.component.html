@@ -1,0 +1,5 @@
+<div class="container">
+  <app-product-list (toggleForm)="toggleForm($event)"></app-product-list>
+  <app-shipment-form *ngIf="isFormVisible" (toggleForm)="toggleForm($event)"></app-shipment-form>
+</div>
+

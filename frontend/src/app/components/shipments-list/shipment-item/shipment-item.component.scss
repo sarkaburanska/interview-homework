@@ -1,0 +1,22 @@
+:host{
+  .shipment-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: #010833 1px solid;
+
+    &--image img{
+      width: 50px;
+      height: 50px;
+    }
+    &--content{
+      display: flex;
+      flex: 0.9;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 0 10px;
+    }
+  }
+}

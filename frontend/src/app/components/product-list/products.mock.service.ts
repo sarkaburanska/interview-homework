@@ -5,7 +5,7 @@ import {WarehouseItem} from "../../core/models/warehouseItem";
 @Injectable({
   providedIn: 'root'
 })
-export class ItemsMockService {
+export class ProductsMockService {
   #mockedItems = [{
     id: 1,
     imageUrl: 'assets/logo_black.svg',

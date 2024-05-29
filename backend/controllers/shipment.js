@@ -3,7 +3,7 @@ let {shipments, STATUS} = require("../fakeDB");
 function create(shipment) {
   const newShipment = {
     ...shipment,
-    id: `shipment-${shipments.length}`,
+    id: shipments.length,
     created_at: new Date(),
     status: STATUS.CREATED
   };

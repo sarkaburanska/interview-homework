@@ -3,7 +3,7 @@ const ShipmentController = require("../controllers/shipment");
 const router = express.Router();
 
 function isShipmentValid(shipment) {
-  return shipment?.company_name && shipment?.shipment_date && shipment?.items?.length > 0;
+  return shipment?.companyName && shipment?.shipmentDate && shipment?.items?.length > 0;
 }
 
 router
@@ -37,7 +37,7 @@ router
       res.status(400).send('Bad Request');
     }
   })
-  .get('/list', function (req, res) {
+  .get('/', function (req, res) {
     // list of shipments
     res.json(ShipmentController.list());
   })
