@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShipmentItemComponent } from './shipment-item.component';
 
-describe('ListItemComponent', () => {
+describe('ShipmentItemComponent', () => {
   let component: ShipmentItemComponent;
   let fixture: ComponentFixture<ShipmentItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ ShipmentItemComponent ]
+      declarations: [ ShipmentItemComponent ]
     })
     .compileComponents();
 

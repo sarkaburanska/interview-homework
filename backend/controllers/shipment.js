@@ -18,8 +18,17 @@ async function update(shipmentId, shipment) {
   if (!original) {
     return;
   }
-  const updated = {...original, ...shipment};
-  return Shipment.updateOne(updated);
+  const itemsToUpdate = shipment.items.filter(item => item._id);
+  const itemsToCreate = shipment.items.filter(item => !item._id);
+
+  const createdItem = await ProductInShipment.insertMany(itemsToCreate);
+  await Promise.all(itemsToUpdate.map(item => ProductInShipment.updateOne({_id: item._id}, item)));
+
+  //TODO solve when items update with missing item or quantity=0
+
+  const ids = [...createdItem, ...itemsToUpdate].map(item => item._id);
+  const updated = {...original.toObject(), ...shipment, items: ids};
+  return Shipment.updateOne({_id: shipmentId}, updated);
 }
 
 function remove(shipmentId) {

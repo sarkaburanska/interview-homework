@@ -1,8 +1,11 @@
 <div class="product-list">
   <h2>Available products</h2>
-  <app-product-item *ngFor="let item of products"
-                    [item]="item"
-                    (addToShipment)="addItemToShipment(item._id)">
-  </app-product-item>
-  <app-info-bar *ngIf="!products?.length" text="Sorry, no products found" color="#5F9EA0"></app-info-bar>
+  <mat-spinner class="mat-spinner" *ngIf="loading"></mat-spinner>
+  <div *ngIf="!loading">
+    <app-product-item *ngFor="let item of products"
+                      [item]="item"
+                      (addToShipment)="addItemToShipment(item._id)">
+    </app-product-item>
+    <app-info-bar *ngIf="!products?.length" text="Sorry, no products found" color="#5F9EA0"></app-info-bar>
+  </div>
 </div>

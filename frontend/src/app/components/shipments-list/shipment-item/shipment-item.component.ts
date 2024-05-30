@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {Component, Input, OnInit} from '@angular/core';
+import {WarehouseItem} from "../../../core/models/warehouseItem";
 import {ShipmentItem} from "../../../core/models/shipmentItem";
 
 @Component({
@@ -7,12 +7,13 @@ import {ShipmentItem} from "../../../core/models/shipmentItem";
   templateUrl: './shipment-item.component.html',
   styleUrls: ['./shipment-item.component.scss']
 })
-export class ShipmentItemComponent {
+export class ShipmentItemComponent implements OnInit {
   @Input() item: ShipmentItem
-  @Output() updateShipment: EventEmitter<void> = new EventEmitter<void>()
-  @Output() deleteShipment: EventEmitter<void> = new EventEmitter<void>()
 
-  panelOpenState = false;
+  constructor() {
+  }
 
-  constructor() { }
+  ngOnInit(): void {
+  }
+
 }

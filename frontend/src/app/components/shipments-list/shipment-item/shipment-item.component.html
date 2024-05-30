@@ -1,19 +1,7 @@
-<div class="shipment-item" (click)="panelOpenState = !panelOpenState">
+<div class="shipment-item" *ngIf="item">
   <div class="shipment-item--content">
-    <span><b>{{ item.companyName }}</b></span>
-    <span>Created: {{ item.createdAt| date: 'dd. MM. yyyy' }}</span>
-    <span>Shipment date: {{ item.shipmentDate | date: 'dd. MM. yyyy' }}</span>
+    <span><b>{{ item.label }}</b></span>
   </div>
-
-  <button mat-flat-button color="accent" (click)="updateShipment.emit()">
-    <mat-icon>edit</mat-icon>
-    Update
-  </button>
-  <button mat-flat-button color="warn" (click)="deleteShipment.emit()">
-    <mat-icon>delete</mat-icon>
-    Delete
-  </button>
-</div>
-<div *ngIf="panelOpenState">
-  <app-product-item *ngFor="let product of item.items" [item]="product"></app-product-item>
+  <span>{{ item.quantity }}x</span>
+  <span>{{ item.price | currency:'EUR' }}</span>
 </div>

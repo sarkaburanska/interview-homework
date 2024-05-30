@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {WarehouseItem} from "../../core/models/warehouseItem";
 
@@ -6,23 +6,26 @@ import {WarehouseItem} from "../../core/models/warehouseItem";
   providedIn: 'root'
 })
 export class ProductsMockService {
-  #mockedItems = [{
-    id: 1,
+  #mockedProducts = [{
+    _id: 1,
     imageUrl: 'assets/logo_black.svg',
     name: 'CloudTalk logo sticker',
+    label: 'logo_sticker',
     description: 'High-quality sticker of the best cloud calling solution provider in  the world',
     quantity: 100,
-    unitPrice: 1
+    price: 1,
+    unit: 'piece'
   }]
 
-  constructor() { }
+  constructor() {
+  }
 
-  get items(): Observable<WarehouseItem[]> {
-    return of(this.#mockedItems)
+  getProducts(): Observable<WarehouseItem[]> {
+    return of(this.#mockedProducts)
   }
 
   addToShipment(id: number): void {
-    const item = this.#mockedItems.find(item => item._id === id)
+    const item = this.#mockedProducts.find(item => item._id === id)
     // add to shipment logic
   }
 }

@@ -6,10 +6,13 @@
       Create shipment
     </button>
   </div>
-  <app-shipment-item *ngFor="let item of shipments"
-                     [item]="item"
-                     (updateShipment)="updateShipment(item._id!)"
-                     (deleteShipment)="deleteShipment(item._id!)">
-  </app-shipment-item>
-  <app-info-bar *ngIf="!shipments?.length" text="Sorry, no shipments found" color="#5F9EA0"></app-info-bar>
+  <mat-spinner class="mat-spinner" *ngIf="loading"></mat-spinner>
+  <div *ngIf="!loading">
+    <app-shipment *ngFor="let item of shipments"
+                  [item]="item"
+                  (updateShipment)="updateShipment(item._id!)"
+                  (deleteShipment)="deleteShipment(item._id!)">
+    </app-shipment>
+    <app-info-bar *ngIf="!shipments?.length" text="Sorry, no shipments found" color="#5F9EA0"></app-info-bar>
+  </div>
 </div>

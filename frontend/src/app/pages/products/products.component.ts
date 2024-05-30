@@ -13,7 +13,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
+    this.route.paramMap?.subscribe((params: ParamMap) => {
       this.isFormVisible = params.get('form') === 'true';
     });
   }

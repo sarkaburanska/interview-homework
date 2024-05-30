@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {omit} = require('ramda');
 const Product = require('../models/product');
 const Shipment = require('../models/shipment');
 const ProductInShipment = require('../models/productInShipment');
@@ -39,13 +40,20 @@ createDummyData = async () => {
         description: 'Description 3',
       }
     ]);
+    const productsForShipment = products.map(item => omit(['_id', 'name', 'unit'], ({
+      ...item.toObject(),
+      quantity: 1
+    })));
 
+    console.log('productsForShipment', productsForShipment)
+    const productsInShipment = await ProductInShipment.insertMany(productsForShipment);
+    // console.log('productsInShipment', productsInShipment);
     const shipments = await Shipment.insertMany([
       {
         companyName: 'Shipment 1',
         createdAt: new Date(),
         shipmentDate: new Date().setDate(new Date().getDate() + 7),
-        items: products.map(item => ({...item, quantity: 1})),
+        items: productsInShipment,
         status: STATUS.CREATED
       },
     ]);

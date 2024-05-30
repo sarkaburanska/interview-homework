@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ShipmentFormComponent } from './shipment-form.component';
+import {ShipmentFormComponent} from './shipment-form.component';
+import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('ShipmentFormComponent', () => {
   let component: ShipmentFormComponent;
@@ -8,9 +9,10 @@ describe('ShipmentFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShipmentFormComponent ]
+      declarations: [ShipmentFormComponent],
+      providers: [HttpClient, HttpHandler]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ShipmentFormComponent);
     component = fixture.componentInstance;

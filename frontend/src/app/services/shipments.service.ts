@@ -1,51 +1,49 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from "./api.service";
 import {BehaviorSubject, Observable} from "rxjs";
+import {Shipment} from "../core/models/shipment";
 import {ShipmentItem} from "../core/models/shipmentItem";
-import {WarehouseItem} from "../core/models/warehouseItem";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShipmentsService {
-  private _currentShipment: BehaviorSubject<ShipmentItem> = new BehaviorSubject<ShipmentItem>({
+  private _currentShipment: BehaviorSubject<Shipment> = new BehaviorSubject<Shipment>({
     items: [],
     companyName: '',
     shipmentDate: '',
+    status: undefined,
   });
 
-  currentShipment: Observable<ShipmentItem> = this._currentShipment.asObservable();
+  currentShipment: Observable<Shipment> = this._currentShipment.asObservable();
 
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService) {
+  }
 
-  setCurrentShipment(shipment: ShipmentItem): void {
+  setCurrentShipment(shipment: Shipment): void {
     this._currentShipment.next(shipment);
   }
 
-  getShipments(): Observable<ShipmentItem[]> {
-    return this.api.get<ShipmentItem[]>('shipments');
+  getShipments(): Observable<Shipment[]> {
+    return this.api.get<Shipment[]>('shipments');
   }
 
-  createShipment(shipment: ShipmentItem): Observable<ShipmentItem> {
-    return this.api.post<ShipmentItem>('shipments', shipment);
+  createShipment(shipment: Shipment): Observable<Shipment> {
+    return this.api.post<Shipment>('shipments', shipment);
   }
 
-  updateShipment(shipment: ShipmentItem): Observable<ShipmentItem> {
-    return this.api.put<ShipmentItem>(`shipments/${shipment._id}`, shipment);
+  updateShipment(shipment: Shipment): Observable<Shipment> {
+    return this.api.put<Shipment>(`shipments/${shipment._id}`, shipment);
   }
 
-  deleteShipment(id: number): Observable<ShipmentItem> {
-    return this.api.delete<ShipmentItem>(`shipments/${id}`);
+  deleteShipment(id: number): Observable<Shipment> {
+    return this.api.delete<Shipment>(`shipments/${id}`);
   }
 
-  addToShipment(item: WarehouseItem): void {
-    if (!this._currentShipment.value) {
-      this._currentShipment.next({companyName: "", shipmentDate: "", items: [item]});
-    } else {
-      let updatedShipment = {...this._currentShipment.value};
-      updatedShipment.items.push(item);
-      this._currentShipment.next(updatedShipment);
-    }
+  addToShipment(item: ShipmentItem): void {
+    let updatedShipment = {...this._currentShipment.value};
+    updatedShipment.items.push(item);
+    this._currentShipment.next(updatedShipment);
   }
 }

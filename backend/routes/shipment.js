@@ -10,41 +10,53 @@ function isShipmentValid(shipment) {
 router
   .post('/', async (req, res) => {
     // create shipment
-    if (isShipmentValid(req.body)) { // easy validation of incoming data
-      const newShipment = await create(req.body);
-      res.json(newShipment);
-    } else {
+    try {
+      if (isShipmentValid(req.body)) { // easy validation of incoming data
+        const newShipment = await create(req.body);
+        res.status(201).json(newShipment);
+      } else {
+        res.status(404).send('Not Found');
+      }
+    } catch (e) {
       res.status(400).send('Bad Request');
     }
   })
   .put('/:shipmentId', async (req, res) => {
     // update shipment
-    if (req.params.shipmentId && isShipmentValid(req.body)) {
-      const updated = await update(req.params.shipmentId, req.body);
-      if (!updated) {
+    try {
+      if (req.params.shipmentId && isShipmentValid(req.body)) {
+        const updated = await update(req.params.shipmentId, req.body);
+        if (!updated) {
+          res.status(404).send('Not Found');
+        }
+        res.json(updated);
+      } else {
         res.status(404).send('Not Found');
       }
-      res.json(updated);
-    } else {
+    } catch (e) {
       res.status(400).send('Bad Request');
     }
   })
   .delete('/:shipmentId', async (req, res) => {
     // delete shipment
-    if (req.params.shipmentId) {
-      await remove(req.params.shipmentId);
-      res.send('Shipment deleted');
-    } else {
+    try {
+      if (req.params.shipmentId) {
+        await remove(req.params.shipmentId);
+        res.send('Shipment deleted');
+      } else {
+        res.status(404).send('Not Found');
+      }
+    } catch (e) {
       res.status(400).send('Bad Request');
     }
   })
   .get('/', async (req, res) => {
-    const shipments = await list();
-    res.json(shipments);
-  })
-  .get('/:shipmentId/status', function (req, res) {
-    // status change?
-    res.send('respond with a resource');
+    try {
+      const shipments = await list();
+      res.json(shipments);
+    } catch (e) {
+      res.status(400).send('Bad Request');
+    }
   });
 
 module.exports = router;

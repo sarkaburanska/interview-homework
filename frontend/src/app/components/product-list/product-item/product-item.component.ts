@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {WarehouseItem} from "../../../core/models/warehouseItem";
+import {ShipmentItem} from "../../../core/models/shipmentItem";
 
 @Component({
   selector: 'app-product-item',
@@ -9,7 +9,12 @@ import {WarehouseItem} from "../../../core/models/warehouseItem";
 })
 export class ProductItemComponent {
   @Input() item: WarehouseItem
+  @Input() showAddButton: boolean = true;
   @Output() addToShipment: EventEmitter<void> = new EventEmitter<void>()
 
-  constructor() { }
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
 }

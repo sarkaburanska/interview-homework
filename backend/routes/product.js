@@ -3,8 +3,12 @@ const {list} = require("../controllers/product");
 var router = express.Router();
 
 router.get('/', async (req, res, next) => {
-    const products = await list();
-    res.json(products);
+    try {
+      const products = await list();
+      res.json(products);
+    } catch (e) {
+      res.status(400).json('Can`t get products');
+    }
   }
 );
 

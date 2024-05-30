@@ -1,4 +1,4 @@
-<div class="product-item">
+<div class="product-item" *ngIf="item">
   <div class="product-item--image">
     <img [src]="item.imageUrl ? item.imageUrl : 'assets/placeholder.png'" alt="warehouse-item-image">
   </div>
@@ -8,5 +8,5 @@
   </div>
   <span>{{ item.quantity }}x</span>
   <span>{{ item.price | currency:'EUR' }} per {{item.unit}}</span>
-  <button class="product-item--button" (click)="addToShipment.emit()">Add to Shipment</button>
+  <button *ngIf="showAddButton" class="product-item--button" (click)="addToShipment.emit()">Add to Shipment</button>
 </div>

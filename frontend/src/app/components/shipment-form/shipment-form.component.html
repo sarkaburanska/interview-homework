@@ -1,6 +1,7 @@
 <mat-card class="custom-card">
   <mat-card-content>
     <h2>Shipment form</h2>
+    <h4 *ngIf="error" [ngStyle]="{'color': 'maroon'}">{{ error }}</h4>
     <form (ngSubmit)="onSubmit()">
 
       <mat-form-field>
@@ -11,12 +12,20 @@
                [(ngModel)]="companyName"
                id="companyName">
       </mat-form-field>
+      <mat-form-field *ngIf="id">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="status" name="status" id="status">
+          <mat-option *ngFor="let status of statusValues" [value]="status">{{ status }}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-form-field>
         <input
           name="shipmentDate"
           [(ngModel)]="shipmentDate"
           id="shipmentDate"
-          matInput [matDatepicker]="picker" placeholder="Choose a shipment date">
+          matInput [matDatepicker]="picker" placeholder="Choose a shipment date"
+          [matDatepickerFilter]="dateFilter"
+        >
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
