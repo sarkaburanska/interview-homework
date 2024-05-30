@@ -1,6 +1,6 @@
 export interface WarehouseItem {
+  _id: number
   imageUrl: string
-  id: number
   name: string
   label: string
   description: string

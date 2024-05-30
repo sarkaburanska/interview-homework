@@ -13,11 +13,26 @@
   .product-item-input {
     flex: 0.5;
   }
+
   .product-item-label {
     flex: 0.5;
   }
 
   mat-form-field {
     width: 100%;
+
+    input {
+      background-color: transparent;
+    }
+  }
+
+  .custom-card {
+    background-color: cadetblue;
+  }
+
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
   }
 }

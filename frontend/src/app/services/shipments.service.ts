@@ -32,7 +32,7 @@ export class ShipmentsService {
   }
 
   updateShipment(shipment: ShipmentItem): Observable<ShipmentItem> {
-    return this.api.put<ShipmentItem>(`shipments/${shipment.id}`, shipment);
+    return this.api.put<ShipmentItem>(`shipments/${shipment._id}`, shipment);
   }
 
   deleteShipment(id: number): Observable<ShipmentItem> {

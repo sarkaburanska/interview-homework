@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="custom-card">
   <mat-card-content>
     <h2>Shipment form</h2>
     <form (ngSubmit)="onSubmit()">
@@ -38,7 +38,10 @@
           </mat-form-field>
         </div>
       </div>
-      <button mat-raised-button color="primary" type="submit">{{ id ? 'Update shipment' : 'Create shipment' }}</button>
+      <div class="buttons">
+        <button mat-raised-button type="submit">{{ id ? 'Update shipment' : 'Create shipment' }}</button>
+        <button mat-raised-button type="button" (click)="onCancel()">Cancel</button>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>

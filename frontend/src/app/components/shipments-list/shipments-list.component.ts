@@ -25,7 +25,7 @@ export class ShipmentsListComponent implements OnInit {
   }
 
   updateShipment(id: number) {
-    const shipment = this.shipments.find((shipment: ShipmentItem) => shipment.id === id);
+    const shipment = this.shipments.find((shipment: ShipmentItem) => shipment._id === id);
     if (!shipment) {
       return;
     }
@@ -35,7 +35,7 @@ export class ShipmentsListComponent implements OnInit {
 
   deleteShipment(id: number) {
     this.shipmentsService.deleteShipment(id).subscribe(() => {
-      this.shipments = this.shipments.filter((shipment: ShipmentItem) => shipment.id !== id);
+      this.shipments = this.shipments.filter((shipment: ShipmentItem) => shipment._id !== id);
     });
   }
 }

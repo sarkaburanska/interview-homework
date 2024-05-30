@@ -22,7 +22,7 @@ export class ProductsMockService {
   }
 
   addToShipment(id: number): void {
-    const item = this.#mockedItems.find(item => item.id === id)
+    const item = this.#mockedItems.find(item => item._id === id)
     // add to shipment logic
   }
 }

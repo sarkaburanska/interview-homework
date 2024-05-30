@@ -1,5 +1,6 @@
 const express = require('express');
 const ShipmentController = require("../controllers/shipment");
+const {create, update, remove, list} = require("../controllers/shipment");
 const router = express.Router();
 
 function isShipmentValid(shipment) {
@@ -7,19 +8,19 @@ function isShipmentValid(shipment) {
 }
 
 router
-  .post('/', function (req, res) {
+  .post('/', async (req, res) => {
     // create shipment
     if (isShipmentValid(req.body)) { // easy validation of incoming data
-      const newShipment = ShipmentController.create(req.body);
+      const newShipment = await create(req.body);
       res.json(newShipment);
     } else {
       res.status(400).send('Bad Request');
     }
   })
-  .put('/:shipmentId', function (req, res) {
+  .put('/:shipmentId', async (req, res) => {
     // update shipment
     if (req.params.shipmentId && isShipmentValid(req.body)) {
-      const updated = ShipmentController.update(req.params.shipmentId, req.body);
+      const updated = await update(req.params.shipmentId, req.body);
       if (!updated) {
         res.status(404).send('Not Found');
       }
@@ -28,18 +29,18 @@ router
       res.status(400).send('Bad Request');
     }
   })
-  .delete('/:shipmentId', function (req, res) {
+  .delete('/:shipmentId', async (req, res) => {
     // delete shipment
     if (req.params.shipmentId) {
-      ShipmentController.remove(req.params.shipmentId);
+      await remove(req.params.shipmentId);
       res.send('Shipment deleted');
     } else {
       res.status(400).send('Bad Request');
     }
   })
-  .get('/', function (req, res) {
-    // list of shipments
-    res.json(ShipmentController.list());
+  .get('/', async (req, res) => {
+    const shipments = await list();
+    res.json(shipments);
   })
   .get('/:shipmentId/status', function (req, res) {
     // status change?

@@ -1,7 +1,11 @@
-const {products} = require("../fakeDB");
+const Product = require('../models/product');
 
-function list(){
-  return products;
+async function list() {
+  return Product.find()
+    .then((products) => {
+      return products;
+    })
+    .catch((err) => console.log(err));
 }
 
 module.exports = {list};

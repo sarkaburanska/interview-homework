@@ -1,10 +1,11 @@
 var express = require('express');
-const ProductController = require("../controllers/product");
-const {products} = require("../fakeDB");
+const {list} = require("../controllers/product");
 var router = express.Router();
 
-router.get('/', function (req, res, next) {
-  res.json(ProductController.list());
-});
+router.get('/', async (req, res, next) => {
+    const products = await list();
+    res.json(products);
+  }
+);
 
 module.exports = router;

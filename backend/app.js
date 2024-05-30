@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var db = require('./config/db');
 
 var productRouter = require('./routes/product');
 var shipmentRouter = require('./routes/shipment');

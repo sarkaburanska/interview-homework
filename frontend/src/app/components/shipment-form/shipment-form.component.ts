@@ -23,7 +23,7 @@ export class ShipmentFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.shipmentsService.currentShipment.subscribe((shipment: ShipmentItem) => {
-      this.id = shipment.id;
+      this.id = shipment._id;
       this.createdAt = shipment.createdAt;
       this.shipmentDate = shipment.shipmentDate;
       this.items = shipment.items;
@@ -38,7 +38,7 @@ export class ShipmentFormComponent implements OnInit {
     }
 
     const newShipment: ShipmentItem = {
-      id: this.id,
+      _id: this.id,
       createdAt: this.createdAt,
       shipmentDate: this.shipmentDate,
       items: this.items,
@@ -66,5 +66,10 @@ export class ShipmentFormComponent implements OnInit {
     this.shipmentDate = '';
     this.items = [];
     this.companyName = '';
+  }
+
+  onCancel() {
+    this.clearForm();
+    this.toggleForm.emit(false);
   }
 }

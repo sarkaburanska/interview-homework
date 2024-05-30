@@ -8,8 +8,8 @@
   </div>
   <app-shipment-item *ngFor="let item of shipments"
                      [item]="item"
-                     (updateShipment)="updateShipment(item.id!)"
-                     (deleteShipment)="deleteShipment(item.id!)">
+                     (updateShipment)="updateShipment(item._id!)"
+                     (deleteShipment)="deleteShipment(item._id!)">
   </app-shipment-item>
-  <app-info-bar *ngIf="!shipments?.length" text="Sorry, no shipments found" color="#d5aef5"></app-info-bar>
+  <app-info-bar *ngIf="!shipments?.length" text="Sorry, no shipments found" color="#5F9EA0"></app-info-bar>
 </div>

@@ -1,33 +1,33 @@
-let {shipments, STATUS} = require("../fakeDB");
+const Shipment = require('../models/shipment');
+const ProductInShipment = require('../models/productInShipment');
+const {STATUS} = require("../models/types");
 
-function create(shipment) {
-  const newShipment = {
+async function create(shipment) {
+  const newShipment = new Shipment({
     ...shipment,
-    id: shipments.length,
-    created_at: new Date(),
+    createdAt: new Date(),
     status: STATUS.CREATED
-  };
-  shipments.push(newShipment);
-  return newShipment;
+  });
+  const items = await ProductInShipment.insertMany(shipment.items);
+  newShipment.items = items.map(item => item._id);
+  return Shipment.insertMany(newShipment);
 }
 
-function update(shipmentId, shipment) {
-  const original = shipments.find(shipment => shipment.id === shipmentId);
+async function update(shipmentId, shipment) {
+  const original = await Shipment.findById(shipmentId);
   if (!original) {
     return;
   }
-  const index = shipments.indexOf(original);
   const updated = {...original, ...shipment};
-  shipments[index] = updated;
-  return updated;
+  return Shipment.updateOne(updated);
 }
 
 function remove(shipmentId) {
-  shipments = shipments.filter(item => item.id !== shipmentId);
+  Shipment.deleteOne({id: shipmentId});
 }
 
 function list() {
-  return shipments;
+  return Shipment.find().populate('items');
 }
 
 module.exports = {create, update, remove, list};

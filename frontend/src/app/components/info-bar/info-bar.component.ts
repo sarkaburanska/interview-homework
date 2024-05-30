@@ -10,6 +10,7 @@ export class InfoBarComponent implements OnInit {
   @Input() color: string;
 
   constructor() {
+    this.color = '#5F9EA0';
   }
 
   ngOnInit(): void {

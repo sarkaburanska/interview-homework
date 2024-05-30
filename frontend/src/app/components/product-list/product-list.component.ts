@@ -23,7 +23,7 @@ export class ProductListComponent {
 
   addItemToShipment(id: number): void {
     this.toggleForm.emit(true);
-    const item: WarehouseItem = this.products.find((item) => item.id === id)!;
+    const item: WarehouseItem = this.products.find((item) => item._id === id)!;
     const clonedItem: WarehouseItem = {...item, quantity: 1};
     this.shipmentsService.addToShipment(clonedItem)
   }
