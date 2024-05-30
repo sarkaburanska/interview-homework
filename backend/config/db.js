@@ -12,7 +12,6 @@ mongoose.connect(uri);
 const connection = mongoose.connection;
 
 createDummyData = async () => {
-  console.log('createDummyData')
   try {
     const products = await Product.insertMany([
       {
@@ -45,7 +44,6 @@ createDummyData = async () => {
       quantity: 1
     })));
 
-    console.log('productsForShipment', productsForShipment)
     const productsInShipment = await ProductInShipment.insertMany(productsForShipment);
     // console.log('productsInShipment', productsInShipment);
     const shipments = await Shipment.insertMany([
