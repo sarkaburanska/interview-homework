@@ -7,6 +7,7 @@ router.get('/', async (req, res, next) => {
       const products = await list();
       res.json(products);
     } catch (e) {
+      //TODO logger here
       res.status(400).json('Can`t get products');
     }
   }

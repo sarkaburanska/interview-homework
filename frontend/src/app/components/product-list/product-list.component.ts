@@ -24,7 +24,7 @@ export class ProductListComponent {
       this.products = items;
       setTimeout(() => {
         this.loading = false;
-      }, 2000);
+      }, 1000);
     });
   }
 

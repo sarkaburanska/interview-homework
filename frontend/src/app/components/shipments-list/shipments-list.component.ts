@@ -25,7 +25,7 @@ export class ShipmentsListComponent implements OnInit {
       this.shipments = items;
       setTimeout(() => {
         this.loading = false;
-      }, 2000);
+      }, 1000);
     });
   }
 
