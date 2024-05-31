@@ -1,3 +1,6 @@
+# Running DB
+File backend/docker.sh run in terminal: ./docker.sh
+
 # Express API for Warehouse app
 
 This folder serves as the scaffold of the application that is a part of the interview process for candidates attending on the position in CloudTalk.
